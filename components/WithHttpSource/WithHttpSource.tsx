@@ -39,9 +39,6 @@ export const WithHttpSource: React.FC<Props> = ({ children }) => {
 
   useEffect(() => {
     let pivotedMarketData: PivotedMarketData;
-    const cleanup = () => {
-      clearInterval(interval);
-    };
 
     const interval = setInterval(async () => {
       const { data } = await axios.get<MarketData[]>(
@@ -58,12 +55,14 @@ export const WithHttpSource: React.FC<Props> = ({ children }) => {
           ],
         },
       );
+
       pivotedMarketData = pivotData<MarketData>(
         data,
         'symbol',
       ) as PivotedMarketData;
 
       const alertsToRaise = raiseAlert(reduxAlerts, pivotedMarketData);
+
       alertsToRaise.forEach((alert) => {
         if (!alert.seen) {
           dispatch(triggerAlert(alert));
@@ -72,11 +71,7 @@ export const WithHttpSource: React.FC<Props> = ({ children }) => {
       dispatch(setMarket(data));
     }, 5000);
 
-    window.addEventListener('beforeunload', cleanup);
-
-    return () => {
-      window.removeEventListener('beforeunload', cleanup);
-    };
+    return () => clearInterval(interval);
   }, [dispatch, reduxAlerts]);
 
   return <>{children}</>;
