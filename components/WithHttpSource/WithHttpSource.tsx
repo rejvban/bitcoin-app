@@ -47,9 +47,6 @@ export const WithHttpSource: React.FC<Props> = ({ children }) => {
       const { data } = await axios.get<MarketData[]>(
         'http://api.bitcoincharts.com/v1/markets.json',
         {
-          headers: {
-            'Access-Control-Allow-Origin': '*',
-          },
           transformResponse: [
             (data) => {
               const parsedData = JSON.parse(data);
