@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@bitcoin-app/style/index": ["styles/index.css"],
+      "@bitcoin-app/components": ["components/index.ts"],
+      "@bitcoin-app/models": ["model/index.ts"],
+      "@bitcoin-app/utils": ["utils/index.ts"],
+      "@bitcoin-app/redux": ["store/index.ts"],
+      "@bitcoin-app/redux/market": [
+        "components/WithWebsocketSource/market.slice.ts"
+      ],
+      "@bitcoin-app/redux/alert": ["components/Alert/alert.slice.ts"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.*.ts", "**/*.tsx"],
+  "exclude": ["node_modules", ".next", "out"]
+}
