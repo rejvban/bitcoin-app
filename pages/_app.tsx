@@ -1,5 +1,5 @@
 import { AppProps } from 'next/app';
-import { WithWebsocketSource, Layout } from '@bitcoin-app/components';
+import { WithHttpSource, Layout } from '@bitcoin-app/components';
 import { ToastContainer } from 'react-toastify';
 
 // Redux
@@ -26,11 +26,11 @@ const MyApp = ({ Component, pageProps }: AppProps): JSX.Element => {
   return (
     <Provider store={store}>
       <PersistGate loading={<div>Loading...</div>} persistor={persistor}>
-        <WithWebsocketSource>
+        <WithHttpSource>
           <Layout />
           <Component {...pageProps} />
           <ToastContainer />
-        </WithWebsocketSource>
+        </WithHttpSource>
       </PersistGate>
     </Provider>
   );
