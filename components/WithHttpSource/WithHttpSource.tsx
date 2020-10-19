@@ -45,7 +45,7 @@ export const WithHttpSource: React.FC<Props> = ({ children }) => {
 
     const interval = setInterval(async () => {
       const { data } = await axios.get<MarketData[]>(
-        'http://api.bitcoincharts.com/v1/markets.json',
+        'https://api.bitcoincharts.com/v1/markets.json',
         {
           transformResponse: [
             (data) => {
