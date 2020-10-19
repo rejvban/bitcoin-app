@@ -70,7 +70,7 @@ export const WithHttpSource: React.FC<Props> = ({ children }) => {
         }
       });
       dispatch(setMarket(data));
-    });
+    }, 5000);
 
     window.addEventListener('beforeunload', cleanup);
 
